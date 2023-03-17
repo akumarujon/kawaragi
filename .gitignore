@@ -5,3 +5,6 @@ __pycache__/
 
 # Virtual env
 env
+
+# Files
+test.py

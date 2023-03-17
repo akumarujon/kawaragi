@@ -2,7 +2,7 @@ from config import app
 from utils import html
 import os
 
-@app.get("/<slug>/")
+@app.get("/posts/<slug>/")
 def post_get(slug):
     path = os.getcwd() + f"/posts/{slug}.md"
     

@@ -1,18 +1,23 @@
 from config import app
 import os
+from utils import posts
 
 @app.get("/")
 def home():
     css_file = os.getcwd() + "/static/css/index.css"
-    
+    css_link = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+
     start_html = open(os.getcwd() + "/utils/layouts/start.html","rt")
     end_html = open(os.getcwd() + "/utils/layouts/end.html","rt")
  
-    posts_link = ""
+    posts_link = posts()
 
-    ext = ".md"
+    favicon =  "https://raw.githubusercontent.com/triistam/website/main/static/favicon.ico"
 
-    for path in os.listdir(os.getcwd() + "/posts/"):
-        posts_link += f"<a href='/posts/{path.split(ext)[0]}'>{path.split(ext)[0]}<a>\n"
+    body = f"""
+  <div class="container">
+  <h1>Posts so far!</h1>
+    {posts_link}
+  </div>"""
 
-    return start_html.read().format(css_file) + f"<ul>{posts_link}<ul>" + end_html.read()
+    return start_html.read().format(css_file) + body + end_html.read()
